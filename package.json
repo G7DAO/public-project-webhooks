@@ -1,6 +1,6 @@
 {
   "name": "public-project-webhooks",
-  "version": "0.0.6",
+  "version": "0.0.12",
   "description": "G7 public project webhooks and components",
   "main": "index.js",
   "scripts": {

@@ -78,8 +78,38 @@ const authMethods = () => {
     setAddress(address);
   };
 
+  const handleLoggedin = (_b) => {
+    setLoggedin(_b);
+  };
+
+  const getIsLoggedin = () => {
+    return isLoggedin;
+  };
+
+  const handleAddress = (_a) => {
+    setAddress(_a);
+  };
+
+  const getAddress = () => {
+    return address;
+  };
+
+  const deleteCookies = () => {
+    Cookies.remove("g7-auth");
+  };
+
+  const getCookies = () => {
+    return Cookies.get("g7-auth");
+  };
+
   return {
     authConnect,
+    deleteCookies,
+    getCookies,
+    getAddress,
+    handleAddress,
+    getIsLoggedin,
+    handleLoggedin,
     isMetaMaskInstalled,
     metaMaskClientCheck,
   };
