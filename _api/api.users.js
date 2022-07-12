@@ -9,7 +9,7 @@ const createUsers = () => {
   };
 
   const createUser = async (signed_msg) => {
-    const url = process.env.REACT_APP_API_URL+'/v1/auth/user'
+    const url = process.env.REACT_APP_API_URL+'/v1/user'
     return await fetch(url, {
       method: 'POST',
       headers: {
