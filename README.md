@@ -1,6 +1,10 @@
 # public-project-webhooks
 G7 public project webhooks and components
 
+### Features
+ - Web3 Auth
+ - API Helpers
+
 ### Install
 npm i @g7dao/public-project-webhooks
 
