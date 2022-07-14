@@ -2,9 +2,9 @@
 G7 public project webhooks and components
 
 ### Install
-npm i public-project-webhooks
+npm i @g7dao/public-project-webhooks
 
-import { _user, _aid } from "public-project-webhooks";
+import { _aid, _auth } from "@g7dao/public-project-webhooks";
 
 ### Legacy
 
@@ -16,4 +16,4 @@ import { _user, _aid } from "../_api";
 
 **Add**
 
-import { _user, _aid } from "public-project-webhooks";
+import { _aid, _auth } from "@g7dao/public-project-webhooks";
