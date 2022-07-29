@@ -19,7 +19,7 @@ const AuthMethods = () => {
     // Now we check to see if MetaMask is installed
     if (!isMetaMaskInstalled()) {
       // If it isn't installed we ask the user to click to install it
-      alert("Please install Metamask");
+      console.log("Metamask is not installed");
     }
   };
 
@@ -65,7 +65,7 @@ const AuthMethods = () => {
         //alert("Metamask connect error");
       }
     } else {
-      alert("Please install Metamask");
+      console.log("Metamask is not installed")
     }
   };
 
