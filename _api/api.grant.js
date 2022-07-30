@@ -8,7 +8,7 @@ const createGrant = () => {
     }
   };
 
-  const createGrant = async (aid) => {
+  const createGrant = async (grant) => {
     const url = process.env.REACT_APP_API_URL+'/v1/grant'
     return await fetch(url, {
       method: 'POST',
@@ -18,7 +18,7 @@ const createGrant = () => {
           'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN,
         },
       body: JSON.stringify({
-        aid
+        grant
       }),
     });
   }
