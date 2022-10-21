@@ -7,6 +7,7 @@ import user from '../_api/api.users';
 const AuthMethods = () => {
 
   let address = ""
+  let _c = process.env.REACT_APP_COOKIE_NAME || "g7-auth"
 
   // Created check function to see if the MetaMask extension is installed
   const isMetaMaskInstalled = () => {
@@ -48,7 +49,6 @@ const AuthMethods = () => {
             }
           })
           .then((_r) => {
-            const one_hour = new Date(new Date().getTime() + 3600 * 1000); // sign token for 1 hour
             const { token } = _r.data;
             if (token === undefined) {
               alert("Metamask connect error");
@@ -56,7 +56,7 @@ const AuthMethods = () => {
             }
 
             const setToken = JSON.stringify({ token, signed_msg });
-            Cookies.set("g7-auth", setToken, { expires: one_hour });
+            createCookies(setToken)
           })
           .catch((e) => {
             alert("Metamask connect error");
@@ -74,15 +74,21 @@ const AuthMethods = () => {
   };
 
   const deleteCookies = () => {
-    Cookies.remove("g7-auth");
+    Cookies.remove(_c);
   };
 
   const getCookies = () => {
-    return Cookies.get("g7-auth");
+    return Cookies.get(_c);
+  };
+
+  const createCookies = (setToken) => {
+    const one_hour = new Date(new Date().getTime() + 3600 * 1000); // sign token for 1 hour
+    Cookies.set(_c, setToken, { expires: one_hour });
   };
 
   return {
     authConnect,
+    createCookies,
     deleteCookies,
     getCookies,
     getAddress,
