@@ -6,6 +6,7 @@ import newsletter from './_api/api.newsletter';
 import talent from './_api/api.talent';
 import waitlist from './_api/api.waitlist';
 import user from './_api/api.users';
+import xps from './_api/api.xps';
 
 export const _aid = aid;
 export const _auth = auth;
@@ -15,6 +16,7 @@ export const _newsletter = newsletter;
 export const _talent = talent;
 export const _waitlist = waitlist;
 export const _user = user;
+export const _xps = xps;
 
 const models = {
   _aid,
@@ -25,6 +27,7 @@ const models = {
   _talent,
   _waitlist,
   _user,
+  _xps,
 };
 
 export default models;
