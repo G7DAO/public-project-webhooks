@@ -81,8 +81,37 @@ const manageXPS = () => {
     });
   }
 
+  const getAllLevels = async () => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/level'
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
+  const createLevel = async (level) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/level'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        level
+      }),
+    });
+  }
+
 
   return {
+    getAllLevels,
+    createLevel,
     getAllPaths,
     createPath,
     getAllQuests,
