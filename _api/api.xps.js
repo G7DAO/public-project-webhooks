@@ -1,4 +1,4 @@
-const createWaitList = () => {
+const manageXPS = () => {
 
   const getAllTasks = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/task'
@@ -54,8 +54,37 @@ const createWaitList = () => {
     });
   }
 
+  const getAllPaths = async () => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/path'
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
+  const createPath = async (path) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/path'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        path
+      }),
+    });
+  }
+
 
   return {
+    getAllPaths,
+    createPath,
     getAllQuests,
     createQuest,
     getAllTasks,
@@ -64,4 +93,4 @@ const createWaitList = () => {
 
 }
 
-export default createWaitList();
+export default manageXPS();
