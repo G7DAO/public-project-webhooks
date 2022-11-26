@@ -27,6 +27,18 @@ const manageXPS = () => {
     });
   }
 
+  const deleteTask = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/task/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   const getAllQuests = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/quest'
     return await fetch(url, {
@@ -51,6 +63,18 @@ const manageXPS = () => {
       body: JSON.stringify({
         quest
       }),
+    });
+  }
+
+  const deleteQuest = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/quest/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
     });
   }
 
@@ -81,6 +105,18 @@ const manageXPS = () => {
     });
   }
 
+  const deletePath = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/path/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   const getAllLevels = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/level'
     return await fetch(url, {
@@ -108,16 +144,31 @@ const manageXPS = () => {
     });
   }
 
+  const deleteLevel = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/level/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
 
   return {
     getAllLevels,
     createLevel,
+    deleteLevel,
     getAllPaths,
     createPath,
+    deletePath,
     getAllQuests,
     createQuest,
+    deleteQuest,
     getAllTasks,
     createTask,
+    deleteTask,
   };
 
 }
