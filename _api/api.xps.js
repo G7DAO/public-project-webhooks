@@ -156,7 +156,49 @@ const manageXPS = () => {
     });
   }
 
+  const getAchievements = async () => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement'
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
+  const createAchievement = async (level) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        level
+      }),
+    });
+  }
+
+  const deleteAchievement = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   return {
+    getAchievements,
+    createAchievement,
+    deleteAchievement,
     getAllLevels,
     createLevel,
     deleteLevel,
