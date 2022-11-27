@@ -168,7 +168,7 @@ const manageXPS = () => {
     });
   };
 
-  const createAchievement = async (level) => {
+  const createAchievement = async (achievement) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement'
     return await fetch(url, {
       method: 'POST',
@@ -178,7 +178,7 @@ const manageXPS = () => {
           'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
         },
       body: JSON.stringify({
-        level
+        achievement
       }),
     });
   }
