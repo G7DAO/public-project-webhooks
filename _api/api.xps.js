@@ -1,7 +1,7 @@
 const manageXPS = () => {
 
   const getAllTasks = async () => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/task'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/tasks'
     return await fetch(url, {
       method: 'GET',
       headers: {
@@ -40,7 +40,7 @@ const manageXPS = () => {
   }
 
   const getAllQuests = async () => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/quest'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/quests'
     return await fetch(url, {
       method: 'GET',
       headers: {
@@ -79,7 +79,7 @@ const manageXPS = () => {
   }
 
   const getAllPaths = async () => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/path'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/paths'
     return await fetch(url, {
       method: 'GET',
       headers: {
@@ -118,7 +118,7 @@ const manageXPS = () => {
   }
 
   const getAllLevels = async () => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/level'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/levels'
     return await fetch(url, {
       method: 'GET',
       headers: {
