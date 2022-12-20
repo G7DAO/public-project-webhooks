@@ -1,5 +1,44 @@
 const manageXPS = () => {
 
+  const getAllIntegrations = async () => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integrations'
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
+  const createIntegration = async (task) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integration'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        task
+      }),
+    });
+  }
+
+  const deleteIntegration = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integration/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   const getAllTasks = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/tasks'
     return await fetch(url, {
@@ -196,6 +235,9 @@ const manageXPS = () => {
   }
 
   return {
+    getAllIntegrations,
+    createIntegration,
+    deleteIntegration,
     getAchievements,
     createAchievement,
     deleteAchievement,
