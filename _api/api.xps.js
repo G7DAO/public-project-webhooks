@@ -12,7 +12,7 @@ const manageXPS = () => {
     });
   };
 
-  const createIntegration = async (task) => {
+  const createIntegration = async (data) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integration'
     return await fetch(url, {
       method: 'POST',
@@ -22,7 +22,7 @@ const manageXPS = () => {
           'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
         },
       body: JSON.stringify({
-        task
+        data
       }),
     });
   }
@@ -39,7 +39,7 @@ const manageXPS = () => {
     });
   }
 
-  const createWorkerJob = async (task) => {
+  const createWorkerJob = async (data) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/job'
     return await fetch(url, {
       method: 'POST',
@@ -49,7 +49,7 @@ const manageXPS = () => {
           'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
         },
       body: JSON.stringify({
-        task
+        data
       }),
     });
   }
