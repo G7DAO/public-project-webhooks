@@ -54,6 +54,18 @@ const manageXPS = () => {
     });
   }
 
+  const deleteWorkerJob = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/job/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   const getAllTasks = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/tasks'
     return await fetch(url, {
@@ -254,6 +266,7 @@ const manageXPS = () => {
     createIntegration,
     deleteIntegration,
     createWorkerJob,
+    deleteWorkerJob,
     getAchievements,
     createAchievement,
     deleteAchievement,
