@@ -1,0 +1,17 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "lib": ["dom"],
+    "module": "commonjs",
+    "target": "es2020",
+    "rootDir": "./",
+    "outDir": "build",
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "resolveJsonModule": true
+  }
+}

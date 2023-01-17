@@ -2,12 +2,12 @@ import Web3Token from "web3-token";
 import Cookies from "js-cookie";
 import { ethers } from "ethers";
 
-import user from '../_api/api.users';
+import user from "../_api/api.users";
+import { browserEnv } from "../utils/env";
 
 const AuthMethods = () => {
-
-  let address = ""
-  let _c = process.env.REACT_APP_COOKIE_NAME || "g7-auth"
+  let address = "";
+  let _c = browserEnv("COOKIE_NAME") || "g7-auth";
 
   // Created check function to see if the MetaMask extension is installed
   const isMetaMaskInstalled = () => {
@@ -35,10 +35,8 @@ const AuthMethods = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         address = addressArray[0];
-        const signed_msg = await Web3Token.sign(
-          async (msg) => await signer.signMessage(msg),
-          "1d"
-        );
+        // @ts-ignore-next-line
+        const signed_msg = await Web3Token.sign(async (msg) => await signer.signMessage(msg), "1d");
 
         // Create user via the api
         const resp = user.createUser(signed_msg);
@@ -56,7 +54,7 @@ const AuthMethods = () => {
             }
 
             const setToken = JSON.stringify({ token, signed_msg });
-            createCookies(setToken)
+            createCookies(setToken);
           })
           .catch((e) => {
             alert("Metamask connect error");
@@ -65,7 +63,7 @@ const AuthMethods = () => {
         //alert("Metamask connect error");
       }
     } else {
-      console.log("Metamask is not installed")
+      console.log("Metamask is not installed");
     }
   };
 
@@ -81,7 +79,7 @@ const AuthMethods = () => {
     return Cookies.get(_c);
   };
 
-  const createCookies = (setToken) => {
+  const createCookies = (setToken: string) => {
     const one_hour = new Date(new Date().getTime() + 3600 * 1000); // sign token for 1 hour
     Cookies.set(_c, setToken, { expires: one_hour });
   };
@@ -95,6 +93,6 @@ const AuthMethods = () => {
     isMetaMaskInstalled,
     metaMaskClientCheck,
   };
-}
+};
 
 export default AuthMethods();
