@@ -10,3 +10,5 @@ artifacts
 
 # local env files
 .env.local
+
+build
