@@ -261,6 +261,21 @@ const manageXPS = () => {
     });
   }
 
+  const createClientUser = async (data) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/job'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        data
+      }),
+    });
+  }
+
   return {
     getAllIntegrations,
     createIntegration,
