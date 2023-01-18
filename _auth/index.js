@@ -96,6 +96,7 @@ const AuthMethods = () => {
           .then((_r) => {
             const { token } = _r.data;
             if (token === undefined) {
+              address = ""
               alert("Metamask connect error");
               return;
             }
@@ -104,6 +105,7 @@ const AuthMethods = () => {
             createCookies(setToken)
           })
           .catch((e) => {
+            address = ""
             alert("Metamask connect error");
           });
       } catch {
