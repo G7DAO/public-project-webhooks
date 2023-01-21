@@ -223,7 +223,7 @@ const manageXPS = () => {
   }
 
   const getAchievements = async () => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/achievements'
     return await fetch(url, {
       method: 'GET',
       headers: {
