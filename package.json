@@ -1,6 +1,6 @@
 {
   "name": "@g7dao/public-project-webhooks",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "G7 public project webhooks and components",
   "main": "index.js",
   "scripts": {
