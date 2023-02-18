@@ -83,6 +83,18 @@ const manageXPS = () => {
     });
   };
 
+  const getWaitlistEntryByAddress = async (address) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/entry/'+address
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
   const deleteIntegration = async (uuid) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integration/'+uuid
     return await fetch(url, {
@@ -344,7 +356,23 @@ const manageXPS = () => {
     });
   }
 
+  const xpsAuth = async (signed_msg) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/auth/user'
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        signed_msg,
+      }),
+    });
+  }
+
   return {
+    getWaitlistEntryByAddress,
     getAchievements,
     getAllIntegrations,
     getAllLevels,
@@ -371,6 +399,7 @@ const manageXPS = () => {
     deletePath,
     deleteQuest,
     deleteTask,
+    xpsAuth,
   };
 
 }
