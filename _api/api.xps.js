@@ -297,7 +297,7 @@ const manageXPS = () => {
   }
 
   const createWaitListEntry = async (data) => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist'
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/entry'
     return await fetch(url, {
       method: 'POST',
       headers: {
