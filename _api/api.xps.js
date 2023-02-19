@@ -203,6 +203,18 @@ const manageXPS = () => {
     });
   }
 
+  const deleteWaitlistEntry = async (uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/'+uuid
+    return await fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        }
+    });
+  }
+
   const createAchievement = async (data) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement'
     return await fetch(url, {
@@ -338,6 +350,21 @@ const manageXPS = () => {
     });
   }
 
+  const createWaitListApproval = async (data, uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/approve/'+uuid
+    return await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        data
+      }),
+    });
+  }
+
   const updateAttribute = async (data, uuid) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/attribute/'+uuid
     return await fetch(url, {
@@ -355,6 +382,21 @@ const manageXPS = () => {
 
   const updateAchievement = async (data, uuid) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/achievement/'+uuid
+    return await fetch(url, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+      body: JSON.stringify({
+        data
+      }),
+    });
+  }
+
+  const updateWaitlist = async (data, uuid) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/'+uuid
     return await fetch(url, {
       method: 'PUT',
       headers: {
@@ -401,9 +443,12 @@ const manageXPS = () => {
     createQuest,
     createTask,
     createWaitListEntry,
+    createWaitListApproval,
     createWorkerJob,
     updateAchievement,
     updateAttribute,
+    updateWaitlist,
+    deleteWaitlistEntry,
     deleteIntegration,
     deleteWorkerJob,
     deleteAchievement,
