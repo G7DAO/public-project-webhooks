@@ -95,6 +95,18 @@ const manageXPS = () => {
     });
   };
 
+  const getWaitlistSearch = async (address) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/waitlist/search/all'
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
   const deleteIntegration = async (uuid) => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/manager/integration/'+uuid
     return await fetch(url, {
@@ -373,6 +385,7 @@ const manageXPS = () => {
 
   return {
     getWaitlistEntryByAddress,
+    getWaitlistSearch,
     getAchievements,
     getAllIntegrations,
     getAllLevels,
