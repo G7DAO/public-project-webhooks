@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { ethers } from "ethers";
 
 import user from '../_api/api.users';
+import xps from '../_api/api.xps';
 
 const AuthMethods = () => {
 
@@ -21,6 +22,53 @@ const AuthMethods = () => {
     if (!isMetaMaskInstalled()) {
       // If it isn't installed we ask the user to click to install it
       console.log("Metamask is not installed");
+    }
+  };
+
+  const authConnectXps = async () => {
+    // attaching token to authorization header ... for example
+    if (window.ethereum) {
+      try {
+        const addressArray = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        address = addressArray[0];
+        const signed_msg = await Web3Token.sign(
+          async (msg) => await signer.signMessage(msg),
+          "1d"
+        );
+
+        // Create user via the api
+        const resp = xps.xpsAuth(signed_msg);
+        resp
+          .then((r) => {
+            if (r.status === 201 || r.status === 200) {
+              return r.json();
+            }
+          })
+          .then((_r) => {
+            const { token } = _r.data;
+            if (token === undefined) {
+              alert("Metamask connect error");
+              return;
+            }
+
+            const setToken = JSON.stringify({ token, signed_msg });
+            createCookies(setToken)
+          })
+          .catch((e) => {
+            address = '';
+            alert("Metamask connect error");
+          });
+      } catch {
+        address = '';
+        //alert("Metamask connect error");
+      }
+    } else {
+      console.log("Metamask is not installed")
     }
   };
 
@@ -69,6 +117,53 @@ const AuthMethods = () => {
     }
   };
 
+  const authConnectClient = async () => {
+    // attaching token to authorization header ... for example
+    if (window.ethereum) {
+      try {
+        const addressArray = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        address = addressArray[0];
+        const signed_msg = await Web3Token.sign(
+          async (msg) => await signer.signMessage(msg),
+          "1d"
+        );
+
+        // Create user via the api
+        const resp = user.createUser(signed_msg);
+        resp
+          .then((r) => {
+            if (r.status === 201 || r.status === 200) {
+              return r.json();
+            }
+          })
+          .then((_r) => {
+            const { token } = _r.data;
+            if (token === undefined) {
+              address = ""
+              alert("Metamask connect error");
+              return;
+            }
+
+            const setToken = JSON.stringify({ token, signed_msg });
+            createCookies(setToken)
+          })
+          .catch((e) => {
+            address = ""
+            alert("Metamask connect error");
+          });
+      } catch {
+        //alert("Metamask connect error");
+      }
+    } else {
+      console.log("Metamask is not installed")
+    }
+  };
+
   const getAddress = () => {
     return address;
   };
@@ -87,6 +182,7 @@ const AuthMethods = () => {
   };
 
   return {
+    authConnectXps,
     authConnect,
     createCookies,
     deleteCookies,
