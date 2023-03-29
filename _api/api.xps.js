@@ -47,6 +47,18 @@ const manageXPS = () => {
     });
   };
 
+  const getAllDiscordBotUsers = async (userId) => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/scan/discord/'+userId
+    return await fetch(url, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Key': process.env.REACT_APP_PUBLIC_KEY,
+          'Authorization': 'Bearer ' + process.env.REACT_APP_API_TOKEN
+        },
+    });
+  };
+
   const getAllQuests = async () => {
     const url = process.env.REACT_APP_API_URL+'/v1/xps/quests'
     return await fetch(url, {
@@ -430,6 +442,7 @@ const manageXPS = () => {
     getWaitlistSearch,
     getAchievements,
     getAllIntegrations,
+    getAllDiscordBotUsers,
     getAllLevels,
     getAllPaths,
     getAllTasks,
