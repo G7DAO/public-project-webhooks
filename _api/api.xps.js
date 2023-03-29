@@ -47,8 +47,8 @@ const manageXPS = () => {
     });
   };
 
-  const getAllDiscordBotUsers = async (userId) => {
-    const url = process.env.REACT_APP_API_URL+'/v1/xps/scan/discord/'+userId
+  const getAllDiscordBotUsers = async () => {
+    const url = process.env.REACT_APP_API_URL+'/v1/xps/scan/discord/users'
     return await fetch(url, {
       method: 'GET',
       headers: {
